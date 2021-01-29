@@ -2,22 +2,18 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import QuizScreen from '../../src/screens/Quiz';
 
-
-export default function QuizDaGaleraPage() {	
-
+export default function QuizDaGaleraPage({ dbExterno }) {
   return (
     <ThemeProvider theme={dbExterno.theme}>
-      Desafio da próxima aula junto com as animações	      
       <QuizScreen
         externalQuestions={dbExterno.questions}
         externalBg={dbExterno.bg}
       />
     </ThemeProvider>
-  );	  
+  );
 }
 
 export async function getServerSideProps(context) {
-  console.log(context)
   const [projectName, githubUser] = context.query.id.split('___');
 
   try {
@@ -34,7 +30,7 @@ export async function getServerSideProps(context) {
         dbExterno,
       },
     };
-  } catch(err) { 
+  } catch(err) {
     throw new Error(err);
   }
 }

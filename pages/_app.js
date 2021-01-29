@@ -4,10 +4,9 @@ import Head from 'next/head';
 import db from '../db.json';
 
 const GlobalStyle = createGlobalStyle`
-* {
+  * {
     box-sizing: border-box;
   }
-
   body {
     margin: 0;
     padding: 0;
@@ -25,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
   }
 `;
+
 const { theme } = db;
 
 export default function App({ Component, pageProps }) {

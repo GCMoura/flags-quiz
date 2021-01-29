@@ -60,6 +60,7 @@ export default function Home() {
             <h1>{db.title}</h1>
           </Widget.Header>
           <Widget.Content>
+          <p>{db.description}</p>
             <form onSubmit={handleSubmit}>
               <Input
                 name="nomeDoUsuario"
