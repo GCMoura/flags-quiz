@@ -1,7 +1,7 @@
 {
   "bg": "https://img.elo7.com.br/product/original/18B357B/quadro-antigo-mapa-mundi-mod-2-personalizado.jpg",
-  "title": "Quiz CSS da Alura",
-  "description": "Teste os seus conhecimentos sobre CSS e vamos ver quantos layouts você vai deixar de quebrar",
+  "title": "Flag Quiz",
+  "description": "Teste os seus conhecimentos sobre as bandeiras dos países",
   "questions": [
     {
       "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
