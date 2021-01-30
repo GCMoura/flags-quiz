@@ -165,6 +165,8 @@ export default function QuizPage({ externalBg }, props) {
   const totalQuestions = props.length;
   const bg = externalBg;
 
+  console.log('props ', PaymentResponse )
+
   function addResult(result) {
     // results.push(result);
     setResults([
@@ -183,8 +185,6 @@ export default function QuizPage({ externalBg }, props) {
       setScreenState(screenStates.QUIZ);
     }, 1 * 2000);
   }, []);
-
-  
   
   function handleSubmitQuiz() {
     const nextQuestion = questionIndex + 1;
