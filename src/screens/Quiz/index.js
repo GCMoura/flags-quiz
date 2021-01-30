@@ -218,7 +218,7 @@ export async function getStaticProps() {
     const question = await fetch("https://restcountries.eu/rest/v2/all")
 
       .then((res) => {
-        const countries = await res.json();
+        const countries = res.json();
 
         var arrayComNomesDosPaises = []
         var response = []
