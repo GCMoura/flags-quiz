@@ -27,7 +27,7 @@ async function getCountries() {
 
     // console.log('numero array pais escolhido ', numeroPosicaoNoArray)
 
-    for(let i = 0; i < 3; i++){
+    for(let i = 0; i < 3; i++){ 
       //opções de resposta
       number = Math.floor(Math.random() * 250 + 1);
 
