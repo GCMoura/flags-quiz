@@ -67,6 +67,12 @@ function QuestionWidget({
   onSubmit,
   addResult,
 }) {
+
+  console.log('question ', question,
+    'questionIndex ', questionIndex,
+    'totalQuestions ',totalQuestions,
+    'onSubmit ', onSubmit,
+    'addResult ', addResult)
   
   const [selectedAlternative, setSelectedAlternative] = React.useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
