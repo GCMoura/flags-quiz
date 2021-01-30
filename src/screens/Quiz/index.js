@@ -11,7 +11,7 @@ import BackLinkArrow from '../../components/BackLinkArrow';
 
 import loadingAnimation from './animations/loading.json';
 
-function ResultWidget({ results }) {
+function ResultWidget({ results, points }) {
   return (
     <Widget>
       <Widget.Header>
@@ -25,6 +25,9 @@ function ResultWidget({ results }) {
           {results.filter((x) => x).length}
           {' '}
           perguntas
+        </p>
+        <p>
+          Você fez {' '} {points} {' '} pontos.
         </p>
         <ul>
           {results.map((result, index) => (
@@ -66,6 +69,7 @@ function QuestionWidget({
   totalQuestions,
   onSubmit,
   addResult,
+  addPoints,
 }) {
   
   const [selectedAlternative, setSelectedAlternative] = React.useState(undefined);
@@ -103,7 +107,7 @@ function QuestionWidget({
             setIsQuestionSubmited(true);
             if(isCorrect){
               console.log('CORRECT')
-              points += 10
+              addPoints(10)
             }
             setTimeout(() => {
               addResult(isCorrect);
@@ -159,6 +163,7 @@ export default function QuizPage({ externalQuestions, externalBg }) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const [results, setResults] = React.useState([]);
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
+  const [points, setPoints] = React.useState(0);
   const questionIndex = currentQuestion;
   const question = externalQuestions[questionIndex];
   const totalQuestions = externalQuestions.length;
@@ -172,6 +177,12 @@ export default function QuizPage({ externalQuestions, externalBg }) {
     ]);
   }
 
+  function addPoints(value){
+    setPoints(
+      points += value
+    )
+  }
+
   // [React chama de: Efeitos || Effects]
   // React.useEffect
   // atualizado === willUpdate
@@ -183,7 +194,6 @@ export default function QuizPage({ externalQuestions, externalBg }) {
       setScreenState(screenStates.QUIZ);
     }, 1 * 2000);
   }, []);
-
   
   
   function handleSubmitQuiz() {
@@ -206,12 +216,13 @@ export default function QuizPage({ externalQuestions, externalBg }) {
             totalQuestions={totalQuestions}
             onSubmit={handleSubmitQuiz}
             addResult={addResult}
+            addPoints={addPoints}
           />
         )}
 
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
-        {screenState === screenStates.RESULT && <ResultWidget results={results} />}
+        {screenState === screenStates.RESULT && <ResultWidget results={results} points={points} />}
       </QuizContainer>
     </QuizBackground>
   );	  
