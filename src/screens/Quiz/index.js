@@ -40,7 +40,6 @@ function ResultWidget({ results }) {
   );
 }
 
-
 function LoadingWidget() {
   return (
   	<Widget>
@@ -151,13 +150,13 @@ const screenStates = {
   RESULT: 'RESULT',
 };
 
-export default function QuizPage({ externalQuestions, externalBg }) {
+export default function QuizPage({ externalBg }, props) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const [results, setResults] = React.useState([]);
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
-  const question = externalQuestions[questionIndex];
-  const totalQuestions = externalQuestions.length;
+  const question = props[questionIndex];
+  const totalQuestions = props.length;
   const bg = externalBg;
 
   function addResult(result) {
@@ -181,58 +180,8 @@ export default function QuizPage({ externalQuestions, externalBg }) {
     }, 1 * 2000);
   }, []);
 
-  async function getCountries() {
-    const res = await fetch("https://restcountries.eu/rest/v2/all");
-    const countries = await res.json();
   
-    var arrayComNomesDosPaises = []
-    
-    for (let i = 0; i < 5; i++){
-      //bandeira escolhida
-      var number = Math.floor(Math.random() * 250 + 1);
   
-      var bandeiraEscolhida = countries[number].flag
-  
-      var dicaCapital = countries[number].capital
-  
-      if(dicaCapital == ""){
-        dicaCapital = countries[number].region
-      }
-  
-      var paisEscolhido  = countries[number].name
-  
-      var numeroPosicaoNoArray = Math.floor(Math.random() * 4 + 1 -1);
-  
-      // console.log('numero array pais escolhido ', numeroPosicaoNoArray)
-  
-      for(let i = 0; i < 3; i++){ 
-        //opções de resposta
-        number = Math.floor(Math.random() * 250 + 1);
-  
-        // console.log(countries[number].name)
-  
-        var paisParaAlternativas = countries[number].name
-  
-        arrayComNomesDosPaises.push(paisParaAlternativas)
-      }
-      arrayComNomesDosPaises.splice(numeroPosicaoNoArray, 0, paisEscolhido)
-      
-    
-      console.log('bandeira: ', bandeiraEscolhida)
-      console.log('país escolhido: ', paisEscolhido)
-      console.log('Dica de capital: ', dicaCapital)
-    
-      console.log('alternativa 1: ', arrayComNomesDosPaises[0])
-      console.log('alternativa 2: ', arrayComNomesDosPaises[1])
-      console.log('alternativa 3: ', arrayComNomesDosPaises[2])
-      console.log('alternativa 4: ', arrayComNomesDosPaises[3])
-    
-      console.log('alternativa correta: ', numeroPosicaoNoArray + 1)
-    }
-  
-  }
-  
-
   function handleSubmitQuiz() {
     const nextQuestion = questionIndex + 1;
     if (nextQuestion < totalQuestions) {
@@ -263,3 +212,74 @@ export default function QuizPage({ externalQuestions, externalBg }) {
     </QuizBackground>
   );	  
 }	
+
+export async function getStaticProps() {
+
+    const question = await fetch("https://restcountries.eu/rest/v2/all")
+
+      .then((res) => {
+        const countries = await res.json();
+
+        var arrayComNomesDosPaises = []
+        var response = []
+        
+        for (let i = 0; i < 3; i++){
+          //bandeira escolhida
+          var number = Math.floor(Math.random() * 250 + 1);
+      
+          var bandeiraEscolhida = countries[number].flag
+      
+          var dicaCapital = countries[number].capital
+      
+          if(dicaCapital == ""){
+            dicaCapital = countries[number].region
+          }
+      
+          var paisEscolhido  = countries[number].name
+      
+          var numeroPosicaoNoArray = Math.floor(Math.random() * 4 + 1 -1);
+      
+          // console.log('numero array pais escolhido ', numeroPosicaoNoArray)
+      
+          for(let i = 0; i < 3; i++){ 
+            //opções de resposta
+            number = Math.floor(Math.random() * 250 + 1);
+      
+            // console.log(countries[number].name)
+      
+            var paisParaAlternativas = countries[number].name
+      
+            arrayComNomesDosPaises.push(paisParaAlternativas)
+          }
+          arrayComNomesDosPaises.splice(numeroPosicaoNoArray, 0, paisEscolhido)
+          
+        
+          // console.log('bandeira: ', bandeiraEscolhida)
+          // console.log('país escolhido: ', paisEscolhido)
+          // console.log('Dica de capital: ', dicaCapital)
+        
+          // console.log('alternativa 1: ', arrayComNomesDosPaises[0])
+          // console.log('alternativa 2: ', arrayComNomesDosPaises[1])
+          // console.log('alternativa 3: ', arrayComNomesDosPaises[2])
+          // console.log('alternativa 4: ', arrayComNomesDosPaises[3])
+        
+          // console.log('alternativa correta: ', numeroPosicaoNoArray + 1)
+          var data = {
+            image: bandeiraEscolhida,
+            title: "De qual país é essa bandeira?",
+            description: dicaCapital,
+            answer: numeroPosicaoNoArray + 1,
+            alternatives: arrayComNomesDosPaises
+          }
+          response.push(data)
+        }
+    
+        console.log(response)
+    
+        return response
+      })  
+
+  return {
+    props: question,
+  }
+}
