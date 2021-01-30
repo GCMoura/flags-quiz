@@ -3,13 +3,13 @@ async function getCountries() {
   const res = await fetch("https://restcountries.eu/rest/v2/all");
   const countries = await res.json();
 
-  var arrayComNomesDosPaises = []
   
   for (let i = 0; i < 5; i++){
+    var arrayComNomesDosPaises = []
     //bandeira escolhida
     var number = Math.floor(Math.random() * 250 + 1);
 
-    console.log(countries[number])
+    // console.log(countries[number])
     // console.log(countries[number].name)
 
     var bandeiraEscolhida = countries[number].flag
@@ -40,26 +40,27 @@ async function getCountries() {
     arrayComNomesDosPaises.splice(numeroPosicaoNoArray, 0, paisEscolhido)
     
   
-    console.log('bandeira: ', bandeiraEscolhida)
-    console.log('país escolhido: ', paisEscolhido)
-    console.log('Dica de capital: ', dicaCapital)
+    // console.log('bandeira: ', bandeiraEscolhida)
+    // console.log('país escolhido: ', paisEscolhido)
+    // console.log('Dica de capital: ', dicaCapital)
   
-    console.log('alternativa 1: ', arrayComNomesDosPaises[0])
-    console.log('alternativa 2: ', arrayComNomesDosPaises[1])
-    console.log('alternativa 3: ', arrayComNomesDosPaises[2])
-    console.log('alternativa 4: ', arrayComNomesDosPaises[3])
+    // console.log('alternativa 1: ', arrayComNomesDosPaises[0])
+    // console.log('alternativa 2: ', arrayComNomesDosPaises[1])
+    // console.log('alternativa 3: ', arrayComNomesDosPaises[2])
+    // console.log('alternativa 4: ', arrayComNomesDosPaises[3])
   
-    console.log('alternativa correta: ', numeroPosicaoNoArray + 1)
-  }
+    // console.log('alternativa correta: ', numeroPosicaoNoArray + 1)
 
-  const data = {
-    image: bandeiraEscolhida,
-    title: "Você conhece essa bandeira?",
-    description: dicaCapital,
-    answer: numeroPosicaoNoArray + 1,
-    alternatives: arrayComNomesDosPaises
+    const data = {
+      image: bandeiraEscolhida,
+      title: "Você conhece essa bandeira?",
+      description: dicaCapital,
+      answer: numeroPosicaoNoArray + 1,
+      alternatives: arrayComNomesDosPaises
+      
+    }
+    console.log(JSON.stringify(data))
   }
-
 }
 
 getCountries()
