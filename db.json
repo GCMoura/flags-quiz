@@ -3,28 +3,21 @@
   "title": "Flag Quiz",
   "description": "Teste os seus conhecimentos sobre as bandeiras dos países",
   "questions": [
-    {
-      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Como fazer um seletor por id via CSS?",
-      "description": "Essa é pra aquecer",
-      "answer": 2,
-      "alternatives": [
-        ".elemento",
-        "*elemento",
-        "#elemento",
-        "%elemento"
-      ]
+    {"image":"https://restcountries.eu/data/maf.svg",
+      "title":"Você conhece essa bandeira?",
+      "description":"Capital: Marigot",
+      "answer":3,
+      "alternatives":["Bulgaria","Myanmar","Saint Martin (French part)","Germany"]
     },
-    {
-      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Como fazer um background gradiente com css?",
-      "description": "Faz tempo em haha",
-      "answer": 0,
-      "alternatives": [
-         "background: linear-gradient(#e66465, #9198e5);",
-         "background: gradient(#e66465, #9198e5);"
-      ]
-    }
+    {"image":"https://restcountries.eu/data/sxm.svg","title":"Você conhece essa bandeira?","description":"Capital: Philipsburg","answer":4,"alternatives":["Czech Republic","Qatar","Taiwan","Sint Maarten (Dutch part)"]},
+    {"image":"https://restcountries.eu/data/tcd.svg","title":"Você conhece essa bandeira?","description":"Capital: N'Djamena","answer":4,"alternatives":["Zimbabwe","United States of America","Holy See","Chad"]},
+    {"image":"https://restcountries.eu/data/mnp.svg","title":"Você conhece essa bandeira?","description":"Capital: Saipan","answer":4,"alternatives":["Bolivia (Plurinational State of)","Thailand","Jersey","Northern Mariana Islands"]},
+    {"image":"https://restcountries.eu/data/prt.svg","title":"Você conhece essa bandeira?","description":"Capital: Lisbon","answer":2,"alternatives":["Cuba","Portugal","Dominican Republic","Ukraine"]},
+    {"image":"https://restcountries.eu/data/est.svg","title":"Você conhece essa bandeira?","description":"Capital: Tallinn","answer":1,"alternatives":["Estonia","Tanzania, United Republic of","Bolivia (Plurinational State of)","Bermuda"]},
+    {"image":"https://restcountries.eu/data/bol.svg","title":"Você conhece essa bandeira?","description":"Capital: Sucre","answer":1,"alternatives":["Bolivia (Plurinational State of)","Romania","Serbia","Uruguay"]},
+    {"image":"https://restcountries.eu/data/mtq.svg","title":"Você conhece essa bandeira?","description":"Capital: Fort-de-France","answer":4,"alternatives":["Swaziland","Honduras","Antarctica","Martinique"]},
+    {"image":"https://restcountries.eu/data/btn.svg","title":"Você conhece essa bandeira?","description":"Capital: Thimphu","answer":1,"alternatives":["Bhutan","Brazil","Japan","Andorra"]},
+    {"image":"https://restcountries.eu/data/pak.svg","title":"Você conhece essa bandeira?","description":"Capital: Islamabad","answer":3,"alternatives":["Åland Islands","Sao Tome and Principe","Pakistan","Ireland"]}
   ],
   "external": [
     "https://aluraquiz-css.omariosouto.vercel.app/",

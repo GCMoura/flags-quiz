@@ -4,7 +4,7 @@ async function getCountries() {
   const countries = await res.json();
 
   
-  for (let i = 0; i < 5; i++){
+  for (let i = 0; i < 10; i++){
     var arrayComNomesDosPaises = []
     //bandeira escolhida
     var number = Math.floor(Math.random() * 250 + 1);
