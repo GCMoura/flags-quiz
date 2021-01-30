@@ -73,6 +73,7 @@ function QuestionWidget({
   const questionId = `question__${questionIndex}`;	 
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
+  var points= 0
   
   return (
     <Widget>
@@ -100,6 +101,10 @@ function QuestionWidget({
           onSubmit={(event) => {
             event.preventDefault();
             setIsQuestionSubmited(true);
+            if(isCorrect){
+              console.log('CORRECT')
+              points += 10
+            }
             setTimeout(() => {
               addResult(isCorrect);
               onSubmit();
