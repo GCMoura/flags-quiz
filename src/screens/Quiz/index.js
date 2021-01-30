@@ -11,7 +11,6 @@ import BackLinkArrow from '../../components/BackLinkArrow';
 
 import loadingAnimation from './animations/loading.json';
 
-import getCountries from '../../utils/index'
 
 function ResultWidget({ results }) {
   return (
@@ -176,7 +175,6 @@ export default function QuizPage({ externalQuestions, externalBg }) {
   // morre === willUnmount
   React.useEffect(() => {
     // fetch() ...
-    getCountries()
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
     }, 1 * 2000);
