@@ -172,8 +172,6 @@ export default function QuizPage({ externalBg }, props) {
   // atualizado === willUpdate
   // morre === willUnmount
   React.useEffect(() => {
-
-    getCountries()
     // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
