@@ -67,12 +67,6 @@ function QuestionWidget({
   onSubmit,
   addResult,
 }) {
-
-  console.log('question ', question,
-    'questionIndex ', questionIndex,
-    'totalQuestions ',totalQuestions,
-    'onSubmit ', onSubmit,
-    'addResult ', addResult)
   
   const [selectedAlternative, setSelectedAlternative] = React.useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
@@ -156,16 +150,14 @@ const screenStates = {
   RESULT: 'RESULT',
 };
 
-export default function QuizPage({ externalBg }, props) {
+export default function QuizPage({ externalQuestions, externalBg }) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const [results, setResults] = React.useState([]);
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
-  const question = props[questionIndex];
-  const totalQuestions = props.length;
+  const question = externalQuestions[questionIndex];
+  const totalQuestions = externalQuestions.length;
   const bg = externalBg;
-
-  console.log('props ', props )
 
   function addResult(result) {
     // results.push(result);
@@ -180,11 +172,14 @@ export default function QuizPage({ externalBg }, props) {
   // atualizado === willUpdate
   // morre === willUnmount
   React.useEffect(() => {
+
     // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
     }, 1 * 2000);
   }, []);
+
+  
   
   function handleSubmitQuiz() {
     const nextQuestion = questionIndex + 1;
@@ -216,73 +211,3 @@ export default function QuizPage({ externalBg }, props) {
     </QuizBackground>
   );	  
 }	
-
-export async function getStaticProps() {
-
-    const countries = await fetch("https://restcountries.eu/rest/v2/all")
-      .then((res) => {
-        return res.json();
-      }) 
-
-      console.log('countries ', countries)
-
-      var arrayComNomesDosPaises = []
-      // var result = []
-      
-      for (let i = 0; i < 3; i++){
-        //bandeira escolhida
-        var number = Math.floor(Math.random() * 250 + 1);
-    
-        var bandeiraEscolhida = countries[number].flag
-    
-        var dicaCapital = countries[number].capital
-    
-        if(dicaCapital == ""){
-          dicaCapital = countries[number].region
-        }
-    
-        var paisEscolhido  = countries[number].name
-    
-        var numeroPosicaoNoArray = Math.floor(Math.random() * 4 + 1 -1);
-    
-        // console.log('numero array pais escolhido ', numeroPosicaoNoArray)
-    
-        for(let i = 0; i < 3; i++){ 
-          //opções de resposta
-          number = Math.floor(Math.random() * 250 + 1);
-    
-          // console.log(countries[number].name)
-    
-          var paisParaAlternativas = countries[number].name
-    
-          arrayComNomesDosPaises.push(paisParaAlternativas)
-        }
-        arrayComNomesDosPaises.splice(numeroPosicaoNoArray, 0, paisEscolhido)
-      
-        // console.log('bandeira: ', bandeiraEscolhida)
-        // console.log('país escolhido: ', paisEscolhido)
-        // console.log('Dica de capital: ', dicaCapital)
-      
-        // console.log('alternativa 1: ', arrayComNomesDosPaises[0])
-        // console.log('alternativa 2: ', arrayComNomesDosPaises[1])
-        // console.log('alternativa 3: ', arrayComNomesDosPaises[2])
-        // console.log('alternativa 4: ', arrayComNomesDosPaises[3])
-      
-        // console.log('alternativa correta: ', numeroPosicaoNoArray + 1)
-        
-        var data = {
-          image: bandeiraEscolhida,
-          title: "De qual país é essa bandeira?",
-          description: dicaCapital,
-          answer: numeroPosicaoNoArray + 1,
-          alternatives: arrayComNomesDosPaises
-        }
-        result.push(data)
-      }
-
-      console.log('result ', result)
-       
-  return {
-    props: data,
-  }
-}
