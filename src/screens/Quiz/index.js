@@ -227,7 +227,7 @@ export async function getStaticProps() {
       console.log('countries ', countries)
 
       var arrayComNomesDosPaises = []
-      var result = []
+      // var result = []
       
       for (let i = 0; i < 3; i++){
         //bandeira escolhida
@@ -258,7 +258,6 @@ export async function getStaticProps() {
           arrayComNomesDosPaises.push(paisParaAlternativas)
         }
         arrayComNomesDosPaises.splice(numeroPosicaoNoArray, 0, paisEscolhido)
-        
       
         // console.log('bandeira: ', bandeiraEscolhida)
         // console.log('país escolhido: ', paisEscolhido)
@@ -270,6 +269,7 @@ export async function getStaticProps() {
         // console.log('alternativa 4: ', arrayComNomesDosPaises[3])
       
         // console.log('alternativa correta: ', numeroPosicaoNoArray + 1)
+        
         var data = {
           image: bandeiraEscolhida,
           title: "De qual país é essa bandeira?",
@@ -283,6 +283,6 @@ export async function getStaticProps() {
       console.log('result ', result)
        
   return {
-    props: result,
+    props: data,
   }
 }
