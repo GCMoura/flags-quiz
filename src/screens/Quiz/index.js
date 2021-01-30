@@ -165,7 +165,7 @@ export default function QuizPage({ externalBg }, props) {
   const totalQuestions = props.length;
   const bg = externalBg;
 
-  console.log('props ', PaymentResponse )
+  console.log('props ', props )
 
   function addResult(result) {
     // results.push(result);
