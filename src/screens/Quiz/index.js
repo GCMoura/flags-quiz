@@ -11,10 +11,6 @@ import BackLinkArrow from '../../components/BackLinkArrow';
 
 import loadingAnimation from './animations/loading.json';
 
-import fs from 'file-system'
-
-console.log(fs.readFile('../../../db.json'))
-
 function ResultWidget({ results }) {
   return (
     <Widget>
