@@ -27,9 +27,6 @@ function ResultWidget({ results, points }) {
           {' '}
           perguntas
         </p>
-        <p>
-          Você fez {' '} {points} {' '} pontos.
-        </p>
         <ul>
           {results.map((result, index) => (
             <li key={`result__${result}`}>
@@ -39,6 +36,14 @@ function ResultWidget({ results, points }) {
             </li>
           ))}
         </ul>
+        <p>
+          Você fez 
+          {' '} 
+          {points.reduce((acc, value) => {
+            return acc + value
+          }, 0)} 
+          {' '} pontos.
+        </p>
       </Widget.Content>
     </Widget>
   );
@@ -166,7 +171,7 @@ export default function QuizPage({ externalQuestions, externalBg }) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const [results, setResults] = React.useState([]);
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
-  const [points, setPoints] = React.useState(0);
+  const [points, setPoints] = React.useState([]);
   const questionIndex = currentQuestion;
   const question = externalQuestions[questionIndex];
   const totalQuestions = externalQuestions.length;
@@ -182,10 +187,10 @@ export default function QuizPage({ externalQuestions, externalBg }) {
 
   function addPoints(value){
     console.log('addPOints ', points)
-    setPoints(
+    setPoints([
       ...points,
-      value
-    )
+      value,
+    ]);
   }
 
   // [React chama de: Efeitos || Effects]
@@ -199,7 +204,6 @@ export default function QuizPage({ externalQuestions, externalBg }) {
       setScreenState(screenStates.QUIZ);
     }, 1 * 2000);
   }, []);
-  
   
   function handleSubmitQuiz() {
     const nextQuestion = questionIndex + 1;
