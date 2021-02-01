@@ -12,7 +12,6 @@ import BackLinkArrow from '../../components/BackLinkArrow';
 import loadingAnimation from './animations/loading.json';
 
 function ResultWidget({ results, points }) {
-  console.log('points resultwidget ', points)
   return (
     <Widget>
       <Widget.Header>
@@ -113,8 +112,6 @@ function QuestionWidget({
             setIsQuestionSubmited(true);
 
             if(isCorrect){
-              console.log('CORRECT')
-              console.log('isCorrect ', points)
               addPoints(10)
             }
             setTimeout(() => {
@@ -186,7 +183,6 @@ export default function QuizPage({ externalQuestions, externalBg }) {
   }
 
   function addPoints(value){
-    console.log('addPOints ', points)
     setPoints([
       ...points,
       value,
